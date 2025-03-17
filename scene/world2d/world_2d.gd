@@ -5,11 +5,13 @@ extends Node2D
 @onready var global_vars = get_node("/root/GlobalVars")
 @onready var scoring_label = $HUD/scoring_label
 @onready var player_hp_label = $HUD/player_hp_label
+@onready var high_score_label = $HUD/high_score_label
 @onready var score = GlobalVars.score
 @onready var player_health = GlobalVars.player_health
+@onready var high_score_record = SaveLoad.high_score
 
 func _ready() -> void:
-	
+	high_score_label.text = "High Score : " + str(high_score_record)
 # Signal BUS connection 
 	GlobalSignal.ennemy_death.connect(_on_scoring_ennemy_death)
 	GlobalSignal.player_touched_by_ennemy.connect(_player_remove_hp)
@@ -20,6 +22,7 @@ func _process(_delta) -> void:
 	player_hp_label.text = "HP : " + str(player_health)
 
 	if player_health <= 0: # pop game over if hp <= 0
+		save_high_score()
 		game_over()
 	
 # add point to score every timer timeout
@@ -37,3 +40,8 @@ func _player_remove_hp() -> void:
 # game over function
 func game_over() -> void:
 	get_tree().change_scene_to_file("res://scene/gameover/game_over.tscn")
+	
+func save_high_score():
+	if score > SaveLoad.high_score:
+		SaveLoad.high_score = score
+		SaveLoad.save_high_score()

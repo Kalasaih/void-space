@@ -1,22 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwyabocreuu48"]
+[gd_scene load_steps=5 format=3 uid="uid://bwyabocreuu48"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_aniny"]
-font_size = 30
+[ext_resource type="FontFile" uid="uid://dxtpp5m452w35" path="res://assets/fonts/Sterion-BLLld.ttf" id="1_1kan5"]
+
+[sub_resource type="Theme" id="Theme_hta5f"]
+
+[sub_resource type="Theme" id="Theme_in6qw"]
+
+[sub_resource type="Theme" id="Theme_8iokb"]
 
 [node name="HUD" type="CanvasLayer"]
 
 [node name="scoring_label" type="Label" parent="."]
-offset_left = 23.0
-offset_top = 5.0
-offset_right = 144.0
-offset_bottom = 47.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 312.0
+offset_bottom = 40.0
+theme = SubResource("Theme_hta5f")
+theme_override_fonts/font = ExtResource("1_1kan5")
+theme_override_font_sizes/font_size = 30
 text = "Score : 0"
-label_settings = SubResource("LabelSettings_aniny")
-horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="player_hp_label" type="Label" parent="."]
-offset_left = 24.0
-offset_top = 56.0
-offset_right = 64.0
-offset_bottom = 79.0
+offset_left = 8.0
+offset_top = 88.0
+offset_right = 160.0
+offset_bottom = 120.0
+theme = SubResource("Theme_in6qw")
+theme_override_fonts/font = ExtResource("1_1kan5")
+theme_override_font_sizes/font_size = 30
 text = "HP : 0"
+
+[node name="high_score_label" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 48.0
+offset_right = 416.0
+offset_bottom = 77.0
+theme = SubResource("Theme_8iokb")
+theme_override_fonts/font = ExtResource("1_1kan5")
+theme_override_font_sizes/font_size = 30
+text = "High Scrore : 0"
