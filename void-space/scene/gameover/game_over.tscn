@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpsi3s0v0j4gw"]
+
+[ext_resource type="Script" uid="uid://wm8nfp145kie" path="res://scene/gameover/game_over.gd" id="1_iuqpc"]
+[ext_resource type="FontFile" uid="uid://dxtpp5m452w35" path="res://assets/fonts/Sterion-BLLld.ttf" id="1_siwxh"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iuqpc")
+
+[node name="CenterContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = -48.0
+offset_right = 116.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Retry" type="Button" parent="CenterContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../GoToMainMenu")
+theme_override_fonts/font = ExtResource("1_siwxh")
+theme_override_font_sizes/font_size = 30
+text = "Retry"
+
+[node name="GoToMainMenu" type="Button" parent="CenterContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Retry")
+theme_override_fonts/font = ExtResource("1_siwxh")
+theme_override_font_sizes/font_size = 30
+text = "Main Menu"
+
+[node name="GameOverMessage" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -186.0
+offset_top = -243.5
+offset_right = 186.0
+offset_bottom = -92.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_siwxh")
+theme_override_font_sizes/normal_font_size = 50
+text = "You are dead !"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="CenterContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="CenterContainer/GoToMainMenu" to="." method="_on_go_to_main_menu_pressed"]

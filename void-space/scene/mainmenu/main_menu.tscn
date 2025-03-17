@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddhjyqaw842f"]
+
+[ext_resource type="Script" uid="uid://cjxgubivfq0rw" path="res://scene/mainmenu/main_menu.gd" id="1_85app"]
+[ext_resource type="FontFile" uid="uid://dxtpp5m452w35" path="res://assets/fonts/Sterion-BLLld.ttf" id="1_ho6nc"]
+
+[sub_resource type="Theme" id="Theme_85app"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_85app")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.5
+offset_top = -39.0
+offset_right = 132.5
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Quit")
+theme = SubResource("Theme_85app")
+theme_override_fonts/font = ExtResource("1_ho6nc")
+theme_override_font_sizes/font_size = 30
+text = "Start"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Start")
+theme_override_fonts/font = ExtResource("1_ho6nc")
+theme_override_font_sizes/font_size = 30
+text = "Exit"
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bok28jdvv2eei"
+path="res://.godot/imported/v1.0_bass.wav-70ecb0b7306f9238525e57c738ee59dd.sample"
+
+[deps]
+
+source_file="res://assets/music/track 01/v1.0_bass.wav"
+dest_files=["res://.godot/imported/v1.0_bass.wav-70ecb0b7306f9238525e57c738ee59dd.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
