@@ -1,16 +1,16 @@
-# player ship
+# player ship logic
 extends CharacterBody2D
 
-# Variable for parameters and assets
-@export var speed = 30000
-@onready var bullet_instance = preload("res://scene/character/bullet.tscn")
-@onready var bullet_instance2 = preload("res://scene/character/bullet.tscn")
+# Variable definition issued from GlobalVars Singleton & Asset preload
+@export var speed = GlobalVars.player_speed
+@onready var bullet_instance_scene = preload("res://scene/character/bullet.tscn")
 @onready var shooting_point_canon_1 = $ShootingPointCanon1
 @onready var shooting_point_canon_2 = $ShootingPointCanon2
 @onready var canon_sound = preload("res://assets/sound/autocannon-20mm.wav")
 
 # Called every frame
 func _physics_process(delta: float) -> void:
+	
 	# managing movement
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down") 
 	velocity = input_dir * speed * delta
@@ -21,7 +21,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		$MotorEffect.animation = "idle"
 		$MotorEffect.play()
-		
+
+	# Call the shoot function		
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
 	
@@ -39,13 +40,10 @@ func shoot():
 	
 	$CanonSound.stream = canon_sound
 	$CanonSound.play()
-	var bullet_instance = bullet_instance.instantiate()
-	bullet_instance.global_position = shooting_point_canon_1.global_position
-	owner.add_child(bullet_instance)
+	var bullet_instance1 = bullet_instance_scene.instantiate()
+	bullet_instance1.global_position = shooting_point_canon_1.global_position
+	owner.add_child(bullet_instance1)
 
-	var bullet_instance2 = bullet_instance2.instantiate()
+	var bullet_instance2 = bullet_instance_scene.instantiate()
 	bullet_instance2.global_position = shooting_point_canon_2.global_position
 	owner.add_child(bullet_instance2)
-	
-func player_remove_hp_signal():
-	GlobalSignal.player_touched_by_ennemy.emit()
