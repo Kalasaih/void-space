@@ -8,19 +8,18 @@ script = ExtResource("1_pel7v")
 [node name="SpawnPoint" type="Node2D" parent="."]
 
 [node name="Marker2D1" type="Marker2D" parent="SpawnPoint"]
-position = Vector2(1304, 64)
+position = Vector2(1280, 64)
 
 [node name="Marker2D2" type="Marker2D" parent="SpawnPoint"]
-position = Vector2(1304, 240)
+position = Vector2(1280, 240)
 
 [node name="Marker2D3" type="Marker2D" parent="SpawnPoint"]
-position = Vector2(1304, 432)
+position = Vector2(1280, 432)
 
 [node name="Marker2D4" type="Marker2D" parent="SpawnPoint"]
-position = Vector2(1304, 624)
+position = Vector2(1304, 592)
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
 autostart = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

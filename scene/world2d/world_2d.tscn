@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://yyfahwydpdba"]
+[gd_scene load_steps=6 format=3 uid="uid://yyfahwydpdba"]
 
 [ext_resource type="PackedScene" uid="uid://sr5odxwwxot6" path="res://scene/character/character_body_2d.tscn" id="1_01htv"]
 [ext_resource type="Script" uid="uid://dmf83ouiya4t5" path="res://scene/world2d/world_2d.gd" id="1_i6xkq"]
 [ext_resource type="PackedScene" uid="uid://bjnmievlest06" path="res://scene/spawner/klaed_spawner.tscn" id="2_i6xkq"]
 [ext_resource type="PackedScene" uid="uid://bwyabocreuu48" path="res://scene/hud/hud.tscn" id="3_nt0yb"]
+[ext_resource type="PackedScene" uid="uid://cg0qsjbhkb6et" path="res://scene/level/level_1.tscn" id="5_nt0yb"]
 
 [node name="World2d" type="Node2D"]
 script = ExtResource("1_i6xkq")
@@ -16,6 +17,8 @@ script = ExtResource("1_i6xkq")
 
 [node name="ScoringTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="Level1" parent="." instance=ExtResource("5_nt0yb")]
 
 [connection signal="timeout" from="ScoringTimer" to="." method="_on_scoring_timer_timeout"]
 [connection signal="tree_entered" from="ScoringTimer" to="." method="_on_tree_entered"]

@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://cg0qsjbhkb6et"]
+
+[ext_resource type="Script" uid="uid://vjt0hylvpp8p" path="res://scene/level/parallax_sky.gd" id="1_dpoj0"]
+[ext_resource type="Texture2D" uid="uid://dg2un2vcxilso" path="res://assets/environment/desert/desert_sky.png" id="1_ke3pq"]
+[ext_resource type="Script" uid="uid://de8l1xb4rn8b8" path="res://scene/level/parallax_cloud.gd" id="2_8tvdk"]
+[ext_resource type="Texture2D" uid="uid://c7k6i8tvh5dl" path="res://assets/environment/desert/desert_cloud.png" id="2_dg8y7"]
+[ext_resource type="Texture2D" uid="uid://bdxmjo2cow2xy" path="res://assets/environment/desert/desert_moon.png" id="3_elp6i"]
+[ext_resource type="Texture2D" uid="uid://keth8uuw81nu" path="res://assets/environment/desert/desert_mountain.png" id="4_8tvdk"]
+[ext_resource type="Script" uid="uid://bsn4xd5odojm7" path="res://scene/level/parallax_mountain.gd" id="5_elp6i"]
+[ext_resource type="Texture2D" uid="uid://cf8yixuw8mxhv" path="res://assets/environment/desert/desert_dunemid.png" id="8_k43e5"]
+[ext_resource type="Script" uid="uid://cf156iwxpbxd8" path="res://scene/level/parallax_dune_mid.gd" id="8_v5plw"]
+[ext_resource type="Script" uid="uid://dli02w8or5a5f" path="res://scene/level/parallax_dune_front.gd" id="10_x4chx"]
+[ext_resource type="Texture2D" uid="uid://h8x2uhstcra" path="res://assets/environment/desert/desert_dunefrontt.png" id="11_qclw6"]
+[ext_resource type="AudioStream" uid="uid://dmfvuclnqf60y" path="res://assets/music/track 01/v1.0 full song.wav" id="12_qclw6"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="ParallaxSky" type="ParallaxBackground" parent="."]
+script = ExtResource("1_dpoj0")
+
+[node name="SkyLayer" type="ParallaxLayer" parent="ParallaxSky"]
+motion_mirroring = Vector2(1900, 0)
+
+[node name="Sky" type="Sprite2D" parent="ParallaxSky/SkyLayer"]
+position = Vector2(-368, -33)
+texture = ExtResource("1_ke3pq")
+centered = false
+
+[node name="ParallaxMoon" type="ParallaxBackground" parent="."]
+
+[node name="MoonLayer" type="ParallaxLayer" parent="ParallaxMoon"]
+motion_mirroring = Vector2(3800, 0)
+
+[node name="Moon" type="Sprite2D" parent="ParallaxMoon/MoonLayer"]
+position = Vector2(159, -1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_elp6i")
+centered = false
+
+[node name="ParallaxCloud" type="ParallaxBackground" parent="."]
+script = ExtResource("2_8tvdk")
+
+[node name="CloudLayer" type="ParallaxLayer" parent="ParallaxCloud"]
+motion_mirroring = Vector2(1900, 0)
+
+[node name="Cloud" type="Sprite2D" parent="ParallaxCloud/CloudLayer"]
+position = Vector2(-353, -65)
+texture = ExtResource("2_dg8y7")
+centered = false
+
+[node name="ParallaxMountain" type="ParallaxBackground" parent="."]
+script = ExtResource("5_elp6i")
+
+[node name="MountainLayer" type="ParallaxLayer" parent="ParallaxMountain"]
+motion_mirroring = Vector2(3800, 0)
+
+[node name="Moutain" type="Sprite2D" parent="ParallaxMountain/MountainLayer"]
+position = Vector2(-1753, -36)
+texture = ExtResource("4_8tvdk")
+centered = false
+
+[node name="ParallaxDuneMid" type="ParallaxBackground" parent="."]
+script = ExtResource("8_v5plw")
+
+[node name="DuneMidLayer" type="ParallaxLayer" parent="ParallaxDuneMid"]
+motion_mirroring = Vector2(1520, 0)
+
+[node name="DuneMid" type="Sprite2D" parent="ParallaxDuneMid/DuneMidLayer"]
+position = Vector2(-118, 226)
+scale = Vector2(0.8, 0.5)
+texture = ExtResource("8_k43e5")
+centered = false
+
+[node name="ParallaxDuneFront" type="ParallaxBackground" parent="."]
+script = ExtResource("10_x4chx")
+
+[node name="DuneMidFront" type="ParallaxLayer" parent="ParallaxDuneFront"]
+motion_mirroring = Vector2(3800, 0)
+
+[node name="DuneFront" type="Sprite2D" parent="ParallaxDuneFront/DuneMidFront"]
+position = Vector2(-760, 223)
+scale = Vector2(0.8, 0.5)
+texture = ExtResource("11_qclw6")
+centered = false
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_qclw6")
+autoplay = true

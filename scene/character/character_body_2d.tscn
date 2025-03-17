@@ -155,6 +155,7 @@ animations = [{
 radius = 48.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+position = Vector2(96, 344)
 script = ExtResource("1_qug0s")
 metadata/_edit_group_ = true
 
