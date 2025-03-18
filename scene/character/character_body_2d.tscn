@@ -1,133 +1,49 @@
-[gd_scene load_steps=26 format=3 uid="uid://sr5odxwwxot6"]
+[gd_scene load_steps=13 format=3 uid="uid://sr5odxwwxot6"]
 
 [ext_resource type="Script" uid="uid://cjm22roscdhc" path="res://scene/character/character_body_2d.gd" id="1_qug0s"]
-[ext_resource type="Texture2D" uid="uid://dce1jjb880dp8" path="res://assets/ship/Main Ship/Main Ship - Weapons/PNGs/Main Ship - Weapons - Auto Cannon.png" id="2_b8c3x"]
-[ext_resource type="Texture2D" uid="uid://36xh8achjspf" path="res://assets/ship/Main Ship/Main Ship - Bases/PNGs/Main Ship - Base - Full health.png" id="2_gd05a"]
-[ext_resource type="Texture2D" uid="uid://tsmlnfwmh6lj" path="res://assets/ship/Main Ship/Main Ship - Engines/PNGs/Main Ship - Engines - Base Engine.png" id="3_gd05a"]
-[ext_resource type="Texture2D" uid="uid://cwpbv4de46nej" path="res://assets/ship/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Base Engine - Idle.png" id="4_86iwx"]
-[ext_resource type="Texture2D" uid="uid://bvp7p5r7e6ak3" path="res://assets/ship/Main Ship/Main Ship - Engine Effects/PNGs/Main Ship - Engines - Base Engine - Powering.png" id="5_318mt"]
+[ext_resource type="Texture2D" uid="uid://bj0ns453bcc52" path="res://assets/ship/Player ship/player_ship.png" id="2_bgkww"]
+[ext_resource type="Texture2D" uid="uid://h4rl68gm3ac6" path="res://assets/ship/Player ship/sprite_player_spaceship_exhaust_low.png" id="3_i310t"]
+[ext_resource type="Texture2D" uid="uid://dglymyap0k26n" path="res://assets/ship/Player ship/sprite_player_spaceship_exhaust_high.png" id="4_eoq06"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0npi7"]
-atlas = ExtResource("2_b8c3x")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_joior"]
-atlas = ExtResource("2_b8c3x")
-region = Rect2(96, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kvipg"]
-atlas = ExtResource("2_b8c3x")
-region = Rect2(144, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wpf5e"]
-atlas = ExtResource("2_b8c3x")
-region = Rect2(192, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yb3qs"]
-atlas = ExtResource("2_b8c3x")
-region = Rect2(240, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_js44f"]
-atlas = ExtResource("2_b8c3x")
-region = Rect2(288, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mu2pl"]
-atlas = ExtResource("2_b8c3x")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_rs0n8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0npi7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_joior")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kvipg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wpf5e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yb3qs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_js44f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mu2pl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0npi7")
-}],
-"loop": false,
-"name": &"fire",
-"speed": 20.0
-}]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lwir"]
+atlas = ExtResource("2_bgkww")
+region = Rect2(2100, 0, 350, 150)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_86iwx"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_gd05a")
+"texture": SubResource("AtlasTexture_0lwir")
 }],
-"loop": true,
-"name": &"default",
+"loop": false,
+"name": &"down",
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_318mt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jed7g"]
+atlas = ExtResource("3_i310t")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_beqi3"]
+atlas = ExtResource("3_i310t")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4pfj"]
+atlas = ExtResource("4_eoq06")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p36rw"]
+atlas = ExtResource("4_eoq06")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t55na"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_gd05a")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_318mt"]
-atlas = ExtResource("4_86iwx")
-region = Rect2(0, 28, 48, 14)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b8c3x"]
-atlas = ExtResource("4_86iwx")
-region = Rect2(48, 28, 48, 14)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ogaei"]
-atlas = ExtResource("4_86iwx")
-region = Rect2(96, 28, 48, 14)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mjxbh"]
-atlas = ExtResource("5_318mt")
-region = Rect2(0, 24, 48, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pykq2"]
-atlas = ExtResource("5_318mt")
-region = Rect2(48, 24, 48, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7y57j"]
-atlas = ExtResource("5_318mt")
-region = Rect2(96, 24, 48, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1hjxj"]
-atlas = ExtResource("5_318mt")
-region = Rect2(144, 24, 48, 24)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_mjxbh"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_318mt")
+"texture": SubResource("AtlasTexture_jed7g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b8c3x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ogaei")
+"texture": SubResource("AtlasTexture_beqi3")
 }],
 "loop": true,
 "name": &"idle",
@@ -135,71 +51,41 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mjxbh")
+"texture": SubResource("AtlasTexture_d4pfj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pykq2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7y57j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1hjxj")
+"texture": SubResource("AtlasTexture_p36rw")
 }],
 "loop": true,
 "name": &"powering",
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_g1kmc"]
-radius = 48.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i310t"]
+size = Vector2(282, 92)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-position = Vector2(96, 344)
+position = Vector2(201, 382)
+scale = Vector2(0.4, 0.4)
 script = ExtResource("1_qug0s")
-metadata/_edit_group_ = true
-
-[node name="AutoCanon" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(13.0002, 0.000183105)
-rotation = 1.5708
-scale = Vector2(1.8, 1.8)
-sprite_frames = SubResource("SpriteFrames_rs0n8")
-animation = &"fire"
-frame = 7
-frame_progress = 1.0
 
 [node name="BaseShip" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(6.00018, 0.000183105)
-rotation = 1.5708
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_86iwx")
+animation = &"down"
 
-[node name="BaseMotor" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(-25.9998, 0.000183105)
-rotation = 1.5708
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_318mt")
-
-[node name="MotorEffect" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(-55.9998, 0.000183105)
-rotation = 1.5708
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_mjxbh")
+[node name="Motor" type="AnimatedSprite2D" parent="."]
+position = Vector2(-156, 3)
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_t55na")
 animation = &"powering"
-frame_progress = 0.36736
+frame_progress = 0.742822
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-12, 0)
-shape = SubResource("CircleShape2D_g1kmc")
+visible = false
+position = Vector2(8, 2)
+shape = SubResource("RectangleShape2D_i310t")
 
-[node name="ShootingPointCanon1" type="Marker2D" parent="."]
-position = Vector2(32, -16)
-
-[node name="ShootingPointCanon2" type="Marker2D" parent="."]
-position = Vector2(32, 16)
-
-[node name="CanonSound" type="AudioStreamPlayer" parent="."]
+[node name="ShootingPointCanon" type="Marker2D" parent="."]
+position = Vector2(142.5, 2.49997)

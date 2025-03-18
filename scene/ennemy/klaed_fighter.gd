@@ -5,13 +5,20 @@ extends Area2D
 @export var speed = GlobalVars.klaed_fighter_speed
 @onready var hp = GlobalVars.klaed_fighter_health
 @onready var point = GlobalVars.klaed_fighter_point
-@onready var bullet_hit = preload("res://assets/sound/metal-hit.wav")
+@onready var bullet_instance_scene = preload("res://scene/ennemy/klaed_fighter_bullet_ennemy.tscn")
+@onready var shooting_point_canon = $ShootingPointCanon
 @onready var old_color = self.modulate
+@onready var fire_rate = GlobalVars.klaed_fighter_fire_rate
+@onready var shoot_delay = GlobalVars.klaed_fighter_shoot_delay
+@onready var number_of_bullets = GlobalVars.klaed_fighter_number_of_bullets
+
+func _ready():
+	$FireRate.wait_time = fire_rate
+	$FireRate.start()
 
 # Called every frame
 func _process(delta: float) -> void: 
 	global_position.x -= speed * delta # managing the ennemy ship movement
-	global_position.y -= sin( global_position.x * delta * 1.1)
 	$EngineFighter.animation = "powering"
 	$EngineFighter.play() 
 
@@ -37,11 +44,25 @@ func _on_body_entered(body: CharacterBody2D) -> void:
 
 # Function for remove hp to the ennemy with some shiny effect
 func ennemy_remove_hp():
-	$BulletHit.stream = bullet_hit
-	$BulletHit.play()
 	$BaseFighter.modulate = Color(255,255,255)
 	await get_tree().create_timer(0.1).timeout
 	$BaseFighter.modulate = old_color
 	hp -=1
 	if hp <= 0:
 		die()		
+		
+func shoot():		
+	var bullet_instance1 = bullet_instance_scene.instantiate()
+	bullet_instance1.global_position = shooting_point_canon.global_position
+	get_parent().add_child(bullet_instance1)
+
+func _on_fire_rate_timeout() -> void:
+	fire_x_shots()
+
+func fire_x_shots():
+	for i in range(number_of_bullets):  # Tire trois projectiles
+		shoot()
+		await get_tree().create_timer(shoot_delay).timeout
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	fire_x_shots()

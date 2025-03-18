@@ -3,10 +3,10 @@ extends CharacterBody2D
 
 # Variable definition issued from GlobalVars Singleton & Asset preload
 @export var speed = GlobalVars.player_speed
-@onready var bullet_instance_scene = preload("res://scene/character/bullet.tscn")
-@onready var shooting_point_canon_1 = $ShootingPointCanon1
-@onready var shooting_point_canon_2 = $ShootingPointCanon2
-@onready var canon_sound = preload("res://assets/sound/autocannon-20mm.wav")
+@onready var bullet_instance_scene = preload("res://scene/character/laser.tscn")
+@onready var shooting_point_canon_1 = $ShootingPointCanon
+@onready var can_shoot = true
+@onready var fire_rate = GlobalVars.player_fire_rate
 
 # Called every frame
 func _physics_process(delta: float) -> void:
@@ -16,15 +16,18 @@ func _physics_process(delta: float) -> void:
 	velocity = input_dir * speed * delta
 	
 	if velocity.x != 0 or velocity.y != 0:
-		$MotorEffect.animation = "powering"
-		$MotorEffect.play()
+		$Motor.animation = "powering"
+		$Motor.play()
 	else:
-		$MotorEffect.animation = "idle"
-		$MotorEffect.play()
+		$Motor.animation = "idle"
+		$Motor.play()
 
 	# Call the shoot function		
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_pressed("shoot") and can_shoot:
 		shoot()
+		can_shoot = false
+		await get_tree().create_timer(fire_rate).timeout
+		can_shoot = true
 	
 	# interpret movement	
 	move_and_slide()
@@ -35,15 +38,6 @@ func _physics_process(delta: float) -> void:
 
 # shoot fonction for ship	
 func shoot():		
-	$AutoCanon.animation = "fire"
-	$AutoCanon.play()
-	
-	$CanonSound.stream = canon_sound
-	$CanonSound.play()
 	var bullet_instance1 = bullet_instance_scene.instantiate()
 	bullet_instance1.global_position = shooting_point_canon_1.global_position
 	owner.add_child(bullet_instance1)
-
-	var bullet_instance2 = bullet_instance_scene.instantiate()
-	bullet_instance2.global_position = shooting_point_canon_2.global_position
-	owner.add_child(bullet_instance2)

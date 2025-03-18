@@ -1,0 +1,11 @@
+res://scene/character/bullet.tscn::f0e9e4914a90ab78fc2e1e97c0b17f48::1742220606::res://.godot/exported/133200997/export-c2a7940711b48b4f520c8db824c27d0e-bullet.scn
+res://scene/character/character_body_2d.tscn::a58c69975c16c5cca58d5cf62e305102::1742220606::res://.godot/exported/133200997/export-de2d062efd81bca24f65011d8d8bfff1-character_body_2d.scn
+res://scene/ennemy/klaed_fighter.tscn::48ffac9560cdf3f8f37da44d48802a1a::1742220606::res://.godot/exported/133200997/export-8264b63eeaf637b19e183c68ae9ad203-klaed_fighter.scn
+res://scene/gamecontroller/game_controller.tscn::ff59056930f4959d813a79c8a57f0737::1742220606::res://.godot/exported/133200997/export-28d037ae57a7ee0a84231731983eaf00-game_controller.scn
+res://scene/hud/hud.tscn::78bb430766aa64e0a3ae82b354ede636::1742220606::res://.godot/exported/133200997/export-46cf4bdef39650dd3f254ed405400d5c-hud.scn
+res://scene/spawner/klaed_spawner.tscn::c5c555f48cd25546424e5b55f77ce8b5::1742220606::res://.godot/exported/133200997/export-14506cd6c7baa3e1e7d8b00838b8ef43-klaed_spawner.scn
+res://scene/world2d/world_2d.tscn::8aa5152cc149f5a77a5d56d5d6307bc0::1742220606::res://.godot/exported/133200997/export-2fa82031fd70afc08477b6403dafad4f-world_2d.scn
+res://scene/mainmenu/main_menu.tscn::ac631e00bf8da6ff92be2818ca9e8d0d::1742220606::res://.godot/exported/133200997/export-e64952b5dfba4cbc4164185694911e00-main_menu.scn
+res://global_vars/GlobalVars.tscn::93cb4bdd7271bcb940a6f383472877f9::1742220606::res://.godot/exported/133200997/export-8486ea9eaf9941984b903c07a8df41c0-GlobalVars.scn
+res://scene/gameover/game_over.tscn::929aa70a50073c852982bc540865a2d2::1742220606::res://.godot/exported/133200997/export-60a6f1d489db23de3735e474a831fcae-game_over.scn
+res://scene/level/level_1.tscn::fd0c101669888acb8eeff31c37026fa3::1742220606::res://.godot/exported/133200997/export-1f27e2f9e8fc993bc19bb988346a2767-level_1.scn

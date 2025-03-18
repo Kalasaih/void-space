@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2cucqlhohl4f"]
+
+[ext_resource type="Script" uid="uid://15q5an5i2x5p" path="res://scene/character/laser.gd" id="1_to01n"]
+[ext_resource type="Texture2D" uid="uid://c4mg5itve00x1" path="res://assets/ship/Player ship/shooting laser-sheet.png" id="2_uvnr6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqe2c"]
+atlas = ExtResource("2_uvnr6")
+region = Rect2(0, 0, 211, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2obw"]
+atlas = ExtResource("2_uvnr6")
+region = Rect2(211, 0, 211, 92)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4wfq1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqe2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2obw")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nlgxa"]
+size = Vector2(50, 7.5)
+
+[node name="Laser" type="Area2D" groups=["Player"]]
+script = ExtResource("1_to01n")
+
+[node name="Laser" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-6, -12)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_4wfq1")
+animation = &"moving"
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(24, 1.75)
+shape = SubResource("RectangleShape2D_nlgxa")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(24, 1.5)
+scale = Vector2(2.5, 0.35)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

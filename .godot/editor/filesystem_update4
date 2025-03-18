@@ -1,0 +1,12 @@
+res://scene/gamecontroller/game_controller.tscn
+res://scene/character/character_body_2d.tscn
+res://scene/character/laser.tscn
+res://scene/ennemy/klaed_fighter.tscn
+res://scene/spawner/klaed_spawner.tscn
+res://scene/hud/hud.tscn
+res://scene/world2d/world_2d.tscn
+res://scene/mainmenu/main_menu.tscn
+res://global_vars/GlobalVars.tscn
+res://scene/gameover/game_over.tscn
+res://scene/level/level_1.tscn
+res://scene/ennemy/klaed_fighter_bullet_ennemy.tscn

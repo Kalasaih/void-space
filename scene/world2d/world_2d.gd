@@ -12,9 +12,11 @@ extends Node2D
 
 func _ready() -> void:
 	high_score_label.text = "High Score : " + str(high_score_record)
+	
 # Signal BUS connection 
 	GlobalSignal.ennemy_death.connect(_on_scoring_ennemy_death)
 	GlobalSignal.player_touched_by_ennemy.connect(_player_remove_hp)
+	GlobalSignal.player_touched_by_ennemy_bullet.connect(_player_remove_hp)
 	
 # processed every frame to update the score
 func _process(_delta) -> void:
