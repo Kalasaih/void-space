@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp1dycsfxo12j"]
+
+[ext_resource type="Script" uid="uid://hnts5a0skjcd" path="res://scene/pickup/pickup_life.gd" id="1_uh81n"]
+[ext_resource type="Texture2D" uid="uid://brpsy4bf2fio1" path="res://assets/pickup/life.png" id="2_kuj6r"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c8wmx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kuj6r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2yh8"]
+radius = 57.0088
+
+[node name="PickupLife" type="Area2D"]
+scale = Vector2(0.6, 0.6)
+script = ExtResource("1_uh81n")
+
+[node name="LifeSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_c8wmx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g2yh8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

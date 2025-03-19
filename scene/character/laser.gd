@@ -1,4 +1,4 @@
-# bullet projectile logic for player
+# Bullet projectile logic for player
 extends Area2D
 
 # Variable definition issued from GlobalVars Singleton & Asset preload
@@ -10,10 +10,12 @@ func _process(delta: float) -> void: # management the mouvement of the bullet
 	$Laser.animation = "moving"
 	$Laser.play()
 
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void: # clean bullet from the memory
+# Clean memory when screen exited
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void: 
 	queue_free() # Replace with function body.
 
-func _on_area_entered(area: Area2D) -> void: # manage collision and effect with ennemy
+# Function to manage damage done to ennemy
+func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Ennemy"):
 		area.ennemy_remove_hp()
 		queue_free()

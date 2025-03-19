@@ -13,8 +13,11 @@ extends Area2D
 @onready var shoot_delay = GlobalVars.klaed_fighter_shoot_delay
 @onready var min_number_of_bullets = GlobalVars.klaed_fighter_min_number_of_bullets
 @onready var max_number_of_bullets = GlobalVars.klaed_fighter_max_number_of_bullets
+@export var bullet_count: int = 30
+@export var ring_count: int = 5
+@export var ring_delay: float = 0.2
+@export var bullet_speed: float = 200
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
 	$FireRate.wait_time = fire_rate
@@ -26,23 +29,22 @@ func _process(delta: float) -> void:
 	$EngineFighter.animation = "powering"
 	$EngineFighter.play() 
 
-# Managing the ennemy death
+# managing the ennemy death
 func die():
 	$CollisionShape2D.disabled = true
 	$EngineFighter.hide()
 	$BaseFighter.animation = "destruction"
 	$BaseFighter.play()
 	GlobalSignal.ennemy_death.emit(point)
-	if randf() <= 0.1:  # randf() return a float between 0.1 & 1
-		var pickup_instance = pickup_scene.instantiate()
-		pickup_instance.global_position = global_position
-		get_tree().current_scene.add_child(pickup_instance)
+	var pickup_instance = pickup_scene.instantiate()
+	pickup_instance.global_position = global_position
+	get_tree().current_scene.add_child(pickup_instance)
 	
-# Clean ennemy from memory after playing death animation
+# clean ennemy from memory after playing death animation
 func _on_base_fighter_animation_finished() -> void: 
 	queue_free()
 
-# Clean ennemy from memory if he leave the screen
+# clean ennemy from memory if he leave the screen
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
 
@@ -60,24 +62,39 @@ func ennemy_remove_hp():
 	hp -=1
 	if hp <= 0:
 		die()		
-
-# Function to shoot for the ennemy		
+		
 func shoot():		
 	var bullet_instance1 = bullet_instance_scene.instantiate()
 	bullet_instance1.global_position = shooting_point_canon.global_position
 	get_parent().add_child(bullet_instance1)
-
-# Shoot after fire rate reach timeout
+	
+	
 func _on_fire_rate_timeout() -> void:
-	fire_x_shots()
+	shoot_expanding_rings()
 
-# Function to shoot a random number of bullet
 func fire_x_shots():
-	var bullet_count = randi_range(min_number_of_bullets, max_number_of_bullets)  # Nombre aléatoire de tirs
-	for i in bullet_count:
+	for i in randi() % min_number_of_bullets + max_number_of_bullets:  # Tire trois projectiles
 		shoot()
 		await get_tree().create_timer(shoot_delay).timeout
 
-# Function to shoot when entering the screen
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
-	fire_x_shots()
+	shoot_expanding_rings()
+
+func shoot_expanding_rings():
+	_shoot_expanding_rings(0)
+
+func _shoot_expanding_rings(ring_index):
+	if ring_index >= ring_count:
+		return
+
+	for i in range(bullet_count):
+		var bullet = bullet_instance_scene.instantiate()
+		if bullet and bullet is Area2D:
+			get_parent().call_deferred("add_child", bullet)
+			var angle = TAU * i / bullet_count
+			var direction = Vector2.RIGHT.rotated(angle)
+			bullet.global_position = global_position
+			bullet.direction = direction  # On définit la direction
+			bullet.speed = bullet_speed + ring_index * 50  # On ajuste la vitesse
+
+	get_tree().create_timer(ring_delay).timeout.connect(func(): _shoot_expanding_rings(ring_index + 1))

@@ -21,4 +21,3 @@ autostart = true
 [node name="Level1" parent="." instance=ExtResource("5_nt0yb")]
 
 [connection signal="timeout" from="ScoringTimer" to="." method="_on_scoring_timer_timeout"]
-[connection signal="tree_entered" from="ScoringTimer" to="." method="_on_tree_entered"]

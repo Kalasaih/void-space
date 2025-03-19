@@ -20,6 +20,7 @@ position = Vector2(1280, 432)
 position = Vector2(1304, 592)
 
 [node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

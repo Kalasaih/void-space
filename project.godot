@@ -29,7 +29,7 @@ gdscript/warnings/unused_signal=0
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
 [global_group]
@@ -70,3 +70,7 @@ shoot={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true

@@ -29,6 +29,7 @@ animations = [{
 size = Vector2(50, 7.5)
 
 [node name="Laser" type="Area2D" groups=["Player"]]
+scale = Vector2(2, 2)
 script = ExtResource("1_to01n")
 
 [node name="Laser" type="AnimatedSprite2D" parent="."]

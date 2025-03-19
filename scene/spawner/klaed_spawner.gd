@@ -1,7 +1,7 @@
 # Klaed Spawner
 extends Node2D
 
-# Variable
+# Variable definition
 @onready var spawn_point = $SpawnPoint
 @onready var klaed_fighter_scene = preload("res://scene/ennemy/klaed_fighter.tscn")
 
