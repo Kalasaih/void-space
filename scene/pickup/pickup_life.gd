@@ -1,9 +1,9 @@
 # Logic for life pickup
 extends Area2D
 
-@onready var life_given = GlobalVars.life_given
-@onready var speed = GlobalVars.pickup_speed
-@onready var old_color = self.modulate
+var life_given = GlobalVars.life_given
+var speed = GlobalVars.pickup_speed
+var old_color = self.modulate
 
 # Management the mouvement of the pickup 
 func _process(delta: float) -> void: 

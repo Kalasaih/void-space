@@ -2,7 +2,7 @@
 extends Area2D
 
 # Variable definition issued from GlobalVars Singleton & Asset preload
-@onready var speed = GlobalVars.laser_speed
+var speed = GlobalVars.laser_speed
 
 # Called every frame
 func _process(delta: float) -> void: # management the mouvement of the bullet

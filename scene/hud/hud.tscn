@@ -29,7 +29,7 @@ offset_bottom = 120.0
 theme = SubResource("Theme_in6qw")
 theme_override_fonts/font = ExtResource("1_1kan5")
 theme_override_font_sizes/font_size = 30
-text = "HP : 0"
+text = "Lives : 0"
 
 [node name="high_score_label" type="Label" parent="."]
 offset_left = 8.0

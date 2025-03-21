@@ -1,12 +1,13 @@
 # Bullet projectile logic for ennemy
 extends Area2D
 
-# Variable definition issued from GlobalVars Singleton & Asset preload
-@onready var speed = GlobalVars.klaed_fighter_bullet_speed
+# Variable definition
+var speed = GlobalVars.klaed_fighter_bullet_speed
+var direction = Vector2.ZERO
 
 # Called every frame
-func _process(delta: float) -> void: # management the mouvement of the bullet
-	global_position.x -= speed * delta
+func _process(delta): 
+	position += direction * speed * delta
 
 # Function to emit signal when entered the player body
 func _on_body_entered(body: Node2D) -> void:

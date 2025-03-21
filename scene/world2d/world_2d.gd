@@ -5,10 +5,10 @@ extends Node2D
 @onready var scoring_label = $HUD/scoring_label
 @onready var player_hp_label = $HUD/player_hp_label
 @onready var high_score_label = $HUD/high_score_label
-@onready var score = GlobalVars.score
-@onready var player_health = GlobalVars.player_health
-@onready var player_max_health = GlobalVars.player_max_health
-@onready var high_score_record = SaveLoad.high_score
+var score = GlobalVars.score
+var player_health = GlobalVars.player_health
+var player_max_health = GlobalVars.player_max_health
+var high_score_record = SaveLoad.high_score
 @onready var old_color = $CharacterBody2D/BaseShip.modulate
 
 func _ready() -> void:
@@ -24,7 +24,7 @@ func _ready() -> void:
 # processed every frame to update the score
 func _process(_delta) -> void:
 	scoring_label.text = "Score : " + str(score)
-	player_hp_label.text = "HP : " + str(player_health)
+	player_hp_label.text = "Lives : " + str(player_health)
 
 	if player_health <= 0: # pop game over if hp <= 0
 		save_high_score()

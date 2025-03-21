@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://pcv43d7pnxqd"]
+[gd_scene load_steps=5 format=3 uid="uid://cayvtgohkoktk"]
 
-[ext_resource type="Script" uid="uid://vqp3rarpbkmg" path="res://scene/ennemy/klaed_fighter_bullet_ennemy.gd" id="1_0tw5n"]
+[ext_resource type="Script" uid="uid://dqlxaqob8g7fo" path="res://scene/ennemy/klaed_fighter_bullet_ennemy.gd" id="1_0tw5n"]
 [ext_resource type="Texture2D" uid="uid://cpjjhra8v1pd1" path="res://assets/ennemy/Ship1/projectile/bullet.png" id="1_yr8y4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0tw5n"]
@@ -14,21 +14,25 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_64map"]
-size = Vector2(28, 12)
+[sub_resource type="CircleShape2D" id="CircleShape2D_0tw5n"]
+radius = 6.0
 
 [node name="KlaedFighterBulletEnnemy" type="Area2D"]
 script = ExtResource("1_0tw5n")
 
 [node name="Bullet" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3.5, 0.25)
+scale = Vector2(0.942623, 1.0042)
 sprite_frames = SubResource("SpriteFrames_0tw5n")
+frame_progress = 0.672189
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_64map")
+position = Vector2(-5, 0)
+shape = SubResource("CircleShape2D_0tw5n")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(0.999999, 0)
+position = Vector2(-2, 0)
 scale = Vector2(1.3, 0.6)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

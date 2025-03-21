@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cg0qsjbhkb6et"]
+[gd_scene load_steps=12 format=3 uid="uid://cg0qsjbhkb6et"]
 
 [ext_resource type="Script" uid="uid://vjt0hylvpp8p" path="res://scene/level/parallax_sky.gd" id="1_dpoj0"]
 [ext_resource type="Texture2D" uid="uid://dg2un2vcxilso" path="res://assets/environment/desert/desert_sky.png" id="1_ke3pq"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://cf156iwxpbxd8" path="res://scene/level/parallax_dune_mid.gd" id="8_v5plw"]
 [ext_resource type="Script" uid="uid://dli02w8or5a5f" path="res://scene/level/parallax_dune_front.gd" id="10_x4chx"]
 [ext_resource type="Texture2D" uid="uid://h8x2uhstcra" path="res://assets/environment/desert/desert_dunefrontt.png" id="11_qclw6"]
-[ext_resource type="AudioStream" uid="uid://dmfvuclnqf60y" path="res://assets/music/track 01/v1.0 full song.wav" id="12_qclw6"]
 
 [node name="Level1" type="Node2D"]
 
@@ -82,7 +81,3 @@ position = Vector2(-760, 223)
 scale = Vector2(0.8, 0.5)
 texture = ExtResource("11_qclw6")
 centered = false
-
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_qclw6")
-autoplay = true

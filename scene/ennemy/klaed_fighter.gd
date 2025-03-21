@@ -2,30 +2,30 @@
 extends Area2D
 
 # Variable definition issued from GlobalVars Singleton & Asset preload
-@onready var speed = GlobalVars.klaed_fighter_speed
-@onready var hp = GlobalVars.klaed_fighter_health
-@onready var point = GlobalVars.klaed_fighter_point
+var speed = GlobalVars.klaed_fighter_speed
+var hp = GlobalVars.klaed_fighter_health
+var point = GlobalVars.klaed_fighter_point
 @onready var bullet_instance_scene = preload("res://scene/ennemy/klaed_fighter_bullet_ennemy.tscn")
 @onready var pickup_scene = preload("res://scene/pickup/pickup_life.tscn")
 @onready var shooting_point_canon = $ShootingPointCanon
-@onready var old_color = self.modulate
-@onready var fire_rate = GlobalVars.klaed_fighter_fire_rate
-@onready var shoot_delay = GlobalVars.klaed_fighter_shoot_delay
-@onready var min_number_of_bullets = GlobalVars.klaed_fighter_min_number_of_bullets
-@onready var max_number_of_bullets = GlobalVars.klaed_fighter_max_number_of_bullets
+var old_color = self.modulate
+var fire_rate = GlobalVars.klaed_fighter_fire_rate
+var spread_angle = GlobalVars.klaed_fighter_spread_angle
+var bullet_speed = GlobalVars.klaed_fighter_bullet_speed
+@onready var player = get_tree().get_first_node_in_group("Player")
 
-# Called when the node enters the scene tree for the first time.
+# Call when the scene enter the tree
 func _ready():
 	randomize()
 	$FireRate.wait_time = fire_rate
 	$FireRate.start()
 
 # Called every frame
-func _process(delta: float) -> void: 
+func _process(delta: float) -> void:
 	global_position.x -= speed * delta # managing the ennemy ship movement
 	$EngineFighter.animation = "powering"
 	$EngineFighter.play() 
-
+	
 # Managing the ennemy death
 func die():
 	$CollisionShape2D.disabled = true
@@ -33,11 +33,15 @@ func die():
 	$BaseFighter.animation = "destruction"
 	$BaseFighter.play()
 	GlobalSignal.ennemy_death.emit(point)
-	if randf() <= 0.1:  # randf() return a float between 0.1 & 1
+	pickup_loot()
+
+# Function to manage pickup loot		
+func pickup_loot():
+	if randf() <= GlobalVars.pickup_drop_chance:  # randf() return a float between 0.1 & 1
 		var pickup_instance = pickup_scene.instantiate()
 		pickup_instance.global_position = global_position
-		get_tree().current_scene.add_child(pickup_instance)
-	
+		get_parent().add_child(pickup_instance)
+		
 # Clean ennemy from memory after playing death animation
 func _on_base_fighter_animation_finished() -> void: 
 	queue_free()
@@ -61,23 +65,17 @@ func ennemy_remove_hp():
 	if hp <= 0:
 		die()		
 
-# Function to shoot for the ennemy		
-func shoot():		
-	var bullet_instance1 = bullet_instance_scene.instantiate()
-	bullet_instance1.global_position = shooting_point_canon.global_position
-	get_parent().add_child(bullet_instance1)
+# Function to shoot for the ennemy	
+func shoot():
+	var bullet = bullet_instance_scene.instantiate()
+	bullet.direction = global_position.direction_to(player.global_position) 
+	bullet.global_position = global_position
+	get_parent().add_child(bullet)
 
 # Shoot after fire rate reach timeout
 func _on_fire_rate_timeout() -> void:
-	fire_x_shots()
-
-# Function to shoot a random number of bullet
-func fire_x_shots():
-	var bullet_count = randi_range(min_number_of_bullets, max_number_of_bullets)  # Nombre aléatoire de tirs
-	for i in bullet_count:
-		shoot()
-		await get_tree().create_timer(shoot_delay).timeout
+	shoot()
 
 # Function to shoot when entering the screen
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
-	fire_x_shots()
+	shoot()

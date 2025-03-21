@@ -2,12 +2,14 @@
 extends CharacterBody2D
 
 # Variable definition issued from GlobalVars Singleton & Asset preload
-@export var speed = GlobalVars.player_speed
+var speed = GlobalVars.player_speed
 @onready var bullet_instance_scene = preload("res://scene/character/laser.tscn")
 @onready var shooting_point_canon_1 = $ShootingPointCanon
-@onready var can_shoot = true
-@onready var fire_rate = GlobalVars.player_fire_rate
-@onready var player_invincibility_duration = GlobalVars.player_invincibility_duration
+var can_shoot = true
+var fire_rate = GlobalVars.player_fire_rate
+var player_invincibility_duration = GlobalVars.player_invincibility_duration
+var bullet_count = GlobalVars.player_bullet_count
+var spacing = GlobalVars.player_laser_spacing
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,7 +18,7 @@ func _ready():
 
 # Called every frame
 func _physics_process(delta: float) -> void:
-	
+
 	# managing movement
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down") 
 	velocity = input_dir * speed * delta
@@ -44,9 +46,11 @@ func _physics_process(delta: float) -> void:
 
 # Shoot function for ship	
 func shoot():		
-	var bullet_instance1 = bullet_instance_scene.instantiate()
-	bullet_instance1.global_position = shooting_point_canon_1.global_position
-	owner.add_child(bullet_instance1)
+	for i in range(bullet_count):
+		var bullet = bullet_instance_scene.instantiate()
+		var offset_y = (i - (bullet_count - 1) / 2.0) * spacing
+		bullet.global_position = shooting_point_canon_1.global_position + Vector2(0, offset_y)
+		get_parent().add_child(bullet)
 
 # Player invincibility function	
 func player_invincibility():
