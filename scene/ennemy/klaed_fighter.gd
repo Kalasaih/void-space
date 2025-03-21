@@ -67,10 +67,13 @@ func ennemy_remove_hp():
 
 # Function to shoot for the ennemy	
 func shoot():
-	var bullet = bullet_instance_scene.instantiate()
-	bullet.direction = global_position.direction_to(player.global_position) 
-	bullet.global_position = global_position
-	get_parent().add_child(bullet)
+	if player.position.x < position.x:
+		var bullet = bullet_instance_scene.instantiate()
+		bullet.direction = global_position.direction_to(player.global_position) 
+		bullet.global_position = global_position
+		get_parent().add_child(bullet)
+	else:
+		return
 
 # Shoot after fire rate reach timeout
 func _on_fire_rate_timeout() -> void:
